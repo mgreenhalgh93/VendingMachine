@@ -13,12 +13,13 @@ namespace VendingKata.Services
         {
             get
             {
-                return (Quarters * 25) + (Dimes * 10);
+                return (Quarters * 25) + (Dimes * 10) + (Nickles * 5);
             }
         }
 
         public int Quarters { get; private set; }
         public int Dimes { get; private set; }
+        public int Nickles { get; private set; }
 
         public void Insert(Coin coin, int number)
         {
@@ -29,7 +30,10 @@ namespace VendingKata.Services
                     break;
                 case Coin.Quarter:
                     Quarters += number;
-                    break;         
+                    break;
+                case Coin.Nickel:
+                    Nickles += number;
+                    break;
             }
         }
     }

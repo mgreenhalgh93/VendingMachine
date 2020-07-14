@@ -44,7 +44,7 @@ namespace VendingKata.Tests.Services
             //Arrange
 
             //Act
-            _coinService.Insert(Coin.Dime, 1);
+            _coinService.Insert(Coin.Nickel, 1);
 
             //Assert
             Assert.Equal(5, _coinService.Total);
