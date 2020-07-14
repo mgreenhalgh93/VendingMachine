@@ -28,7 +28,15 @@ namespace VendingKata
 
         public int GetPrice(Product product)
         {
-            return 100;
+            switch (product)
+            {
+                case Product.Cola:
+                    return 100;
+                case Product.Chips:
+                    return 50;
+                default:
+                    return 0;
+            }
         }
 
         public void Insert(Coin coin, int number)
