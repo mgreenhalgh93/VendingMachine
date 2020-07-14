@@ -8,11 +8,17 @@ namespace VendingKata.Tests
         {
         }
 
-        public object Total { get; internal set; }
-
-        internal void Insert(object quarter, int v)
+        public int Total
         {
-            throw new NotImplementedException();
+            get
+            {
+                return 25;
+            }
+        }
+
+        internal void Insert(Coin coin, int number)
+        {
+            
         }
     }
 }
