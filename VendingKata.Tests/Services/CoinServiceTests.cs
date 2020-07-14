@@ -61,5 +61,32 @@ namespace VendingKata.Tests.Services
             //Assert
             Assert.Equal(1, _coinService.Total);
         }
+
+        [Fact]
+        public void NothingInserted_ReturnsCorrectValue_0()
+        {
+            //Arrange
+
+            //Act
+
+            //Assert
+            Assert.Equal(0, _coinService.Total);
+        }
+
+        [Fact]
+        public void InsertingEachCoin_ReturnsCorrectValue_41()
+        {
+            //Arrange
+
+            //Act
+            _coinService.Insert(Coin.Penny, 1);
+            _coinService.Insert(Coin.Nickel, 1);
+            _coinService.Insert(Coin.Dime, 1);
+            _coinService.Insert(Coin.Quarter, 1);
+
+
+            //Assert
+            Assert.Equal(41, _coinService.Total);
+        }
     }
 }
