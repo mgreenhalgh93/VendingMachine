@@ -53,5 +53,17 @@ namespace VendingKata.Tests
             Assert.Equal(0, coinTotal);
             Assert.Equal(1, coinReturn);
         }
+
+        [Fact]
+        public void SlotEmpty_ReturnsInsertCoinsMessage()
+        {
+            //Arrange
+
+            //Act
+            var displayMessage = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal("INSERT COINS", displayMessage);
+        }
     }
 }

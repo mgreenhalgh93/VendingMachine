@@ -16,6 +16,14 @@ namespace VendingKata
         public CoinService Slot { get; set; }
         public CoinService Return { get; set; }
 
+        public string Display
+        {
+            get
+            {
+                return "INSERT COINS";
+            }
+        }
+
         public void Insert(Coin coin, int number)
         {
             if(coin == Coin.Penny)
