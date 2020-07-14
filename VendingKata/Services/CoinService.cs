@@ -17,6 +17,8 @@ namespace VendingKata.Services
             }
         }
 
+        public int Return { get; set; }
+
         public int Quarters { get; private set; }
         public int Dimes { get; private set; }
         public int Nickles { get; private set; }

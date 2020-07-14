@@ -14,7 +14,7 @@ namespace VendingKata.Tests
         }
 
         [Fact]
-        public void InsertQuarter_ReturnsCorrectValue_25()
+        public void AcceptsQuarter_ReturnsCorrectValue_25()
         {
             //Arrange
             
@@ -27,7 +27,7 @@ namespace VendingKata.Tests
 
 
         [Fact]
-        public void InsertDime_ReturnsCorrectValue_10()
+        public void AcceptsDime_ReturnsCorrectValue_10()
         {
             //Arrange
 
@@ -36,6 +36,22 @@ namespace VendingKata.Tests
 
             //Assert
             Assert.Equal(10, _coinService.Total);
+        }
+
+        [Fact]
+        public void ReturnsPenny_ReturnsCorrectValue_1()
+        {
+            //Arrange
+
+            //Act
+            _coinService.Insert(Coin.Penny, 1);
+
+            var coinTotal = _coinService.Total;
+            int coinReturn = _coinService.Return;
+
+            //Assert
+            Assert.Equal(0, coinTotal);
+            Assert.Equal(1, coinReturn);
         }
     }
 }
