@@ -34,6 +34,8 @@ namespace VendingKata
                     return 100;
                 case Product.Chips:
                     return 50;
+                case Product.Candy:
+                    return 65;
                 default:
                     return 0;
             }
