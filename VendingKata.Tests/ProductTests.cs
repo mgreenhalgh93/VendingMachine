@@ -24,5 +24,17 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal(100, price);
         }
+
+        [Fact]
+        public void ValidateCostCola_Retun_50()
+        {
+            //Arrange
+
+            //Act
+            var price = _vendingMachine.GetPrice(Product.Chips);
+
+            //Assert
+            Assert.Equal(50, price);
+        }
     }
 }
