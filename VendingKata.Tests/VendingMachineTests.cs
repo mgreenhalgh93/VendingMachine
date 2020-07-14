@@ -1,9 +1,8 @@
-﻿using System;
-using VendingKata.Domain;
+﻿using VendingKata.Domain;
 using VendingKata.Services;
 using Xunit;
 
-namespace VendingKata.Tests.Services
+namespace VendingKata.Tests
 {
     public class VendingMachineTests
     {
