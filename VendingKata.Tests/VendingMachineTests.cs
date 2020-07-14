@@ -55,7 +55,7 @@ namespace VendingKata.Tests
         }
 
         [Fact]
-        public void SlotEmpty_ReturnsInsertCoinsMessage()
+        public void SlotEmpty_ReturnsDisplayMessage_InsertCoins()
         {
             //Arrange
 
@@ -64,6 +64,19 @@ namespace VendingKata.Tests
 
             //Assert
             Assert.Equal("INSERT COINS", displayMessage);
+        }
+
+        [Fact]
+        public void InsertedQuarter_ReturnsDisplayMessage_25Cents()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Coin.Quarter, 1);
+            var displayMessage = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal("$0.25", displayMessage);
         }
     }
 }
