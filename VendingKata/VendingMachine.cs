@@ -1,4 +1,5 @@
-﻿using VendingKata.Domain;
+﻿using System;
+using VendingKata.Domain;
 using VendingKata.Services;
 
 namespace VendingKata
@@ -23,6 +24,11 @@ namespace VendingKata
                 else
                     return $"{Slot.Total / 100.0}";
             }
+        }
+
+        public int GetPrice(Product product)
+        {
+            return 100;
         }
 
         public void Insert(Coin coin, int number)
