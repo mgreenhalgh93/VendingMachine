@@ -7,19 +7,23 @@ namespace VendingKata.Tests.Services
 {
     public class VendingMachineTests
     {
+        private readonly CoinService _coinService;
+
+        public VendingMachineTests()
+        {
+            _coinService = new CoinService();
+        }
+
         [Fact]
         public void InsertQuarter_ReturnsCorrectValue_25()
         {
             //Arrange
-            var coinService = new CoinService();
-
+            
             //Act
-            coinService.Insert(Coin.Quarter, 1);
-
-            var result = coinService.Total;
+            _coinService.Insert(Coin.Quarter, 1);
 
             //Assert
-            Assert.Equal(25, result);
+            Assert.Equal(25, _coinService.Total);
         }
 
 
@@ -27,15 +31,12 @@ namespace VendingKata.Tests.Services
         public void InsertDime_ReturnsCorrectValue_10()
         {
             //Arrange
-            var coinService = new CoinService();
 
             //Act
-            coinService.Insert(Coin.Dime, 1);
-
-            var result = coinService.Total;
+            _coinService.Insert(Coin.Dime, 1);
 
             //Assert
-            Assert.Equal(10, result);
+            Assert.Equal(10, _coinService.Total);
         }
     }
 }
