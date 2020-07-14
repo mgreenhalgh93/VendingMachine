@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using VendingKata.Domain;
+﻿using VendingKata.Domain;
 using VendingKata.Services;
 
 namespace VendingKata
@@ -20,7 +18,10 @@ namespace VendingKata
         {
             get
             {
-                return "INSERT COINS";
+                if (Slot.Total == 0)
+                    return "INSERT COINS";
+                else
+                    return $"{Slot.Total / 100.0}";
             }
         }
 

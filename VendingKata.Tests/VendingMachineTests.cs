@@ -1,5 +1,4 @@
 ﻿using VendingKata.Domain;
-using VendingKata.Services;
 using Xunit;
 
 namespace VendingKata.Tests
@@ -46,12 +45,9 @@ namespace VendingKata.Tests
             //Act
             _vendingMachine.Insert(Coin.Penny, 1);
 
-            var coinTotal = _vendingMachine.Slot.Total;
-            int coinReturn = _vendingMachine.Return.Total;
-
             //Assert
-            Assert.Equal(0, coinTotal);
-            Assert.Equal(1, coinReturn);
+            Assert.Equal(0, _vendingMachine.Slot.Total);
+            Assert.Equal(1, _vendingMachine.Return.Total);
         }
 
         [Fact]
@@ -60,23 +56,21 @@ namespace VendingKata.Tests
             //Arrange
 
             //Act
-            var displayMessage = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal("INSERT COINS", displayMessage);
+            Assert.Equal("INSERT COINS", _vendingMachine.Display);
         }
 
         [Fact]
-        public void InsertedQuarter_ReturnsDisplayMessage_25Cents()
+        public void InsertedQuarter_ReturnsDisplayMessage_025()
         {
             //Arrange
 
             //Act
             _vendingMachine.Insert(Coin.Quarter, 1);
-            var displayMessage = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal("$0.25", displayMessage);
+            Assert.Equal("0.25", _vendingMachine.Display);
         }
     }
 }
