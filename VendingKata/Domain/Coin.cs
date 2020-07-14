@@ -1,5 +1,5 @@
 ﻿using System;
-namespace VendingKata.Tests
+namespace VendingKata.Domain
 {
     public enum Coin
     {
