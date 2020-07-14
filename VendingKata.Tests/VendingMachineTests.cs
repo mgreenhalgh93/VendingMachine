@@ -6,36 +6,36 @@ namespace VendingKata.Tests
 {
     public class VendingMachineTests
     {
-        private readonly CoinService _coinService;
+        private readonly VendingMachine _vendingMachine;
 
         public VendingMachineTests()
         {
-            _coinService = new CoinService();
+            _vendingMachine = new VendingMachine();
         }
 
         [Fact]
-        public void AcceptsQuarter_ReturnsCorrectValue_25()
-        {
-            //Arrange
-            
-            //Act
-            _coinService.Insert(Coin.Quarter, 1);
-
-            //Assert
-            Assert.Equal(25, _coinService.Total);
-        }
-
-
-        [Fact]
-        public void AcceptsDime_ReturnsCorrectValue_10()
+        public void AcceptsQuarter_ReturnsCorrectValue_3()
         {
             //Arrange
 
             //Act
-            _coinService.Insert(Coin.Dime, 1);
+            _vendingMachine.Insert(Coin.Quarter, 3);
 
             //Assert
-            Assert.Equal(10, _coinService.Total);
+            Assert.Equal(3, _vendingMachine.Slot.Quarters);
+        }
+
+
+        [Fact]
+        public void AcceptsDime_ReturnsCorrectValue_5()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Coin.Dime, 5);
+
+            //Assert
+            Assert.Equal(5, _vendingMachine.Slot.Dimes);
         }
 
         [Fact]
@@ -44,10 +44,10 @@ namespace VendingKata.Tests
             //Arrange
 
             //Act
-            _coinService.Insert(Coin.Penny, 1);
+            _vendingMachine.Insert(Coin.Penny, 1);
 
-            var coinTotal = _coinService.Total;
-            int coinReturn = _coinService.Return;
+            var coinTotal = _vendingMachine.Slot.Total;
+            int coinReturn = _vendingMachine.Return.Total;
 
             //Assert
             Assert.Equal(0, coinTotal);
