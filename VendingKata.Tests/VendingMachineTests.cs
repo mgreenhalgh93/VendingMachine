@@ -99,5 +99,20 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal(4, _vendingMachine.Stock.Candy);
         }
+
+        [Fact]
+        public void Vend_ItemsInStock_ReturnsDisplayMessage_ThankYou()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Cola, 2);
+            _vendingMachine.Insert(Coin.Quarter, 4);
+            _vendingMachine.Vend(Product.Cola);
+
+            //Assert
+            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal("THANK YOU", _vendingMachine.Display);
+        }
     }
 }
