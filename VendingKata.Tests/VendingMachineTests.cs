@@ -70,7 +70,7 @@ namespace VendingKata.Tests
             _vendingMachine.Insert(Coin.Quarter, 1);
 
             //Assert
-            Assert.Equal("0.25", _vendingMachine.Display);
+            Assert.Equal("$0.25", _vendingMachine.Display);
         }
 
         [Fact]
@@ -113,6 +113,41 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal(1, _vendingMachine.Stock.Cola);
             Assert.Equal("THANK YOU", _vendingMachine.Display);
+        }
+
+        [Fact]
+        public void Vend_ItemsInStock_ReturnsDisplayMessage_InsertCoins()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Cola, 2);
+            _vendingMachine.Insert(Coin.Quarter, 4);
+            _vendingMachine.Vend(Product.Cola);
+
+            string display = _vendingMachine.Display;
+            display = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal("INSERT COINS", display);
+        }
+
+
+        [Fact]
+        public void CoinStore_CoinsAreAddedIntoTheStoreOnceInserted_ReturnsCorrectAmount_2()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Chips, 1);
+            _vendingMachine.Insert(Coin.Quarter, 2);
+            _vendingMachine.Vend(Product.Chips);
+
+            var coinStore = _vendingMachine.Store.Quarters;
+
+            //Assert
+            Assert.Equal(2, coinStore);
         }
     }
 }

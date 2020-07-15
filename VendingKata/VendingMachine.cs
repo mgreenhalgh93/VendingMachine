@@ -10,11 +10,15 @@ namespace VendingKata
         {
             Slot = new CoinService();
             Return = new CoinService();
+            Store = new CoinService();
+
             Stock = new ProductService();
         }
 
         public CoinService Slot { get; set; }
         public CoinService Return { get; set; }
+        public CoinService Store { get; set; }
+
         public ProductService Stock { get; set; }
 
         public string Display
@@ -24,11 +28,15 @@ namespace VendingKata
                 string display;
 
                 if (!string.IsNullOrEmpty(TempDisplay))
+                {
                     display = TempDisplay;
+                    TempDisplay = string.Empty;
+                }
+
                 else if (Slot.Total == 0)
                     display = "INSERT COINS";
                 else
-                    display = $"{Slot.Total / 100.0}";
+                    display = DecimalisedSring(Slot.Total);
 
                 return display;
             }
@@ -68,9 +76,15 @@ namespace VendingKata
             {
                 Stock.Vend(product);
                 TempDisplay = "THANK YOU";
+                Slot.Deposit(Store);
             }
         }
 
         private string TempDisplay { get; set; }
+
+        private string DecimalisedSring(int amount)
+        {
+            return string.Format("${0}", amount / 100.0);
+        }
     }
 }
