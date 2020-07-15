@@ -217,5 +217,20 @@ namespace VendingKata.Tests
             Assert.Equal(3, _vendingMachine.Return.Nickels);
 
         }
+
+        [Fact]
+        public void CoinReturn_ReturnsDisplayMessage_InsertCoinAfterCoinsReturned()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Coin.Dime, 2);
+            _vendingMachine.ReturnCoins();
+
+            string display = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal("INSERT COINS", display);
+        }
     }
 }
