@@ -232,5 +232,18 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal("INSERT COINS", display);
         }
+
+        [Fact]
+        public void SoldOut_ItemNotInStock_ReturnsDisplayMessage_SoldOut()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Vend(Product.Chips);
+            string display = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal("SOLD OUT", display);
+        }
     }
 }
