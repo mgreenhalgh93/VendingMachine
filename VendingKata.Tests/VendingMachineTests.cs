@@ -72,5 +72,20 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal("0.25", _vendingMachine.Display);
         }
+
+        [Fact]
+        public void Vend_ItemsInStock_ReturnsDecreasedStockValue_1()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Cola, 2);
+            _vendingMachine.Vend(Product.Cola);
+
+            var colaStock = _vendingMachine.Stock.Cola;
+
+            //Assert
+            Assert.Equal(1, colaStock);
+        }
     }
 }

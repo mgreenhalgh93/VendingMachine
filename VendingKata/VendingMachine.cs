@@ -10,10 +10,12 @@ namespace VendingKata
         {
             Slot = new CoinService();
             Return = new CoinService();
+            Stock = new ProductService();
         }
 
         public CoinService Slot { get; set; }
         public CoinService Return { get; set; }
+        public ProductService Stock { get; set; }
 
         public string Display
         {
@@ -47,6 +49,16 @@ namespace VendingKata
                 Return.Insert(coin, number);
             else
                 Slot.Insert(coin, number);
+        }
+
+        public void Insert(Product product, int number)
+        {
+            Stock.Insert(product, number);
+        }
+
+        public void Vend(Product product)
+        {
+            Stock.Vend(product);
         }
     }
 }
