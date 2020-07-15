@@ -103,5 +103,10 @@ namespace VendingKata
         {
             return string.Format("${0}", amount / 100.0);
         }
+
+        public void ReturnCoins()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

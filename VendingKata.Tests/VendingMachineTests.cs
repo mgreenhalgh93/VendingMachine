@@ -203,5 +203,19 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal(1, _vendingMachine.Return.Dimes);
         }
+
+        [Fact]
+        public void CoinReturn_CoinsAreReturnedWhenCallActioned_CoinsFromTheSlotAreInTheReturn()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Coin.Nickel, 3);
+            _vendingMachine.ReturnCoins();
+
+            //Assert
+            Assert.Equal(3, _vendingMachine.Return.Nickels);
+
+        }
     }
 }
