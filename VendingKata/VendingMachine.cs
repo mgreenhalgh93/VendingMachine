@@ -92,6 +92,11 @@ namespace VendingKata
             }
         }
 
+        public void ReturnCoins()
+        {
+            Slot.Deposit(Return);
+        }
+
         public void DepositToStore(Coin coin, int number)
         {
             Store.Insert(coin, number);
@@ -102,11 +107,6 @@ namespace VendingKata
         private string PriceString(int amount)
         {
             return string.Format("${0}", amount / 100.0);
-        }
-
-        public void ReturnCoins()
-        {
-            throw new NotImplementedException();
         }
     }
 }
