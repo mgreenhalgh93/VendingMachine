@@ -21,7 +21,7 @@ namespace VendingKata.Tests
             _vendingMachine.Insert(Coin.Quarter, 3);
 
             //Assert
-            Assert.Equal(3, _vendingMachine.Slot.Quarters);
+            Assert.Equal(3, _vendingMachine.Slot.Stored(Coin.Quarter));
         }
 
 
@@ -34,7 +34,7 @@ namespace VendingKata.Tests
             _vendingMachine.Insert(Coin.Dime, 5);
 
             //Assert
-            Assert.Equal(5, _vendingMachine.Slot.Dimes);
+            Assert.Equal(5, _vendingMachine.Slot.Stored(Coin.Dime));
         }
 
         [Fact]
@@ -181,7 +181,7 @@ namespace VendingKata.Tests
             _vendingMachine.Insert(Coin.Quarter, 2);
             _vendingMachine.Vend(Product.Chips);
 
-            var coinStore = _vendingMachine.Store.Quarters;
+            var coinStore = _vendingMachine.Store.Stored(Coin.Quarter);
 
             //Assert
             Assert.Equal(2, coinStore);
@@ -203,7 +203,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Cola);
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Return.Dimes);
+            Assert.Equal(1, _vendingMachine.Return.Stored(Coin.Dime));
         }
 
         [Fact]
@@ -216,7 +216,7 @@ namespace VendingKata.Tests
             _vendingMachine.ReturnCoins();
 
             //Assert
-            Assert.Equal(3, _vendingMachine.Return.Nickels);
+            Assert.Equal(3, _vendingMachine.Return.Stored(Coin.Nickel));
 
         }
 

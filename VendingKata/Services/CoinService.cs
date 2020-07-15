@@ -1,90 +1,108 @@
 ﻿using System;
+using System.Collections.Generic;
 using VendingKata.Domain;
 
 namespace VendingKata.Services
 {
     public class CoinService
     {
+        private Dictionary<Coin, int> _coins { get; set; }
+
         public CoinService()
         {
+            _coins = new Dictionary<Coin, int>();
         }
 
         public int Total
         {
             get
             {
-                return (Quarters * 25) + (Dimes * 10) + (Nickels * 5) + Pennies;
+                return GetCoinTotal();
             }
         }
 
-        public int Quarters { get; private set; }
-        public int Dimes { get; private set; }
-        public int Nickels { get; private set; }
-        public int Pennies { get; private set; }
+        public int Stored(Coin coin)
+        {
+            if (_coins.ContainsKey(coin))
+               return _coins[coin];
+
+            return 0;
+        }
 
         public void Insert(Coin coin, int number)
         {
-            switch (coin)
-            {
-                case Coin.Dime:
-                    Dimes += number;
-                    break;
-                case Coin.Quarter:
-                    Quarters += number;
-                    break;
-                case Coin.Nickel:
-                    Nickels += number;
-                    break;
-                case Coin.Penny:
-                    Pennies += number;
-                    break;
-            }
+            if (_coins.ContainsKey(coin))
+                _coins[coin] += number;
+            else
+                _coins.Add(coin, number);
         }
 
         public void Deposit(CoinService service)
         {
-            service.Quarters += Quarters;
-            Quarters = 0;
-
-            service.Dimes += Dimes;
-            Dimes = 0;
-
-            service.Nickels += Nickels;
-            Nickels = 0;
-
-            service.Pennies += Pennies;
-            Pennies = 0;
+            foreach (var coin in _coins)
+            {
+                service.Insert(coin.Key, coin.Value);
+            }
+           _coins.Clear();
         }
 
         public void Return(CoinService service, int amount)
         {
-            while (amount >= 25 && Quarters > 0)
-            {
-                service.Quarters++;
-                Quarters--;
-                amount -= 25;
-            }
+            int returnedQuarters = ReturnCoin(service, Coin.Quarter, amount);
+            amount -= returnedQuarters * CoinValue(Coin.Quarter);
 
-            while (amount >= 10 && Dimes > 0)
-            {
-                service.Dimes++;
-                Dimes--;
-                amount -= 10;
-            }
+            int returnedDimes = ReturnCoin(service, Coin.Dime, amount);
+            amount -= returnedDimes * CoinValue(Coin.Dime);
 
-            while (amount >= 5 && Nickels > 0)
-            {
-                service.Nickels++;
-                Nickels--;
-                amount -= 5;
-            }
+            int returnedNickels = ReturnCoin(service, Coin.Nickel, amount);
+            amount -= returnedNickels * CoinValue(Coin.Nickel);
 
-            while (amount >= 1 && Pennies > 0)
+            int returnedPennies = ReturnCoin(service, Coin.Penny, amount);
+            amount -= returnedPennies * CoinValue(Coin.Penny);
+        }
+
+        private int ReturnCoin(CoinService service, Coin coin, int amount)
+        {
+            int dispensedCoins = Math.Min(amount / CoinValue(coin), Stored(coin));
+            service.Insert(coin, dispensedCoins);
+            RemoveFromService(coin, dispensedCoins);
+
+            return dispensedCoins;
+        }
+
+        private void RemoveFromService(Coin coin, int num)
+        {
+            if (_coins.ContainsKey(coin))
             {
-                service.Pennies++;
-                Pennies--;
-                amount -= 1;
+                _coins[coin] -= Math.Min(num, _coins[coin]);
             }
+        }
+
+        private int CoinValue(Coin coin)
+        {
+            switch (coin)
+            {
+                case Coin.Penny:
+                    return 1;
+                case Coin.Nickel:
+                    return 5;
+                case Coin.Dime:
+                    return 10;
+                case Coin.Quarter:
+                    return 25;
+                default:
+                    return 0;
+            }
+        }
+
+        private int GetCoinTotal()
+        {
+            var total = 0;
+            foreach (var coin in _coins)
+            {
+                total += Stored(coin.Key) * CoinValue(coin.Key);
+            }
+            return total;
         }
     }
 }

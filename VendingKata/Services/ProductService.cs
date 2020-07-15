@@ -6,19 +6,19 @@ namespace VendingKata.Services
 {
     public class ProductService
     {
-        private Dictionary<Product, int> Products { get; set; }
+        private Dictionary<Product, int> _products { get; set; }
 
         public ProductService()
         {
-            Products = new Dictionary<Product, int>();
+            _products = new Dictionary<Product, int>();
         }
 
         public void Insert(Product product, int number)
         {
-            if (Products.ContainsKey(product))
-                Products[product] += number;
+            if (_products.ContainsKey(product))
+                _products[product] += number;
             else
-                Products.Add(product, number);
+                _products.Add(product, number);
         }
 
         public void Vend(Product product)
@@ -26,14 +26,14 @@ namespace VendingKata.Services
             int stock = Stock(product);
             if (stock > 0)
             {
-                Products[product] = stock - 1;
+                _products[product] = stock - 1;
             }
         }
 
         public int Stock(Product product)
         {
-            if (Products.ContainsKey(product))
-               return Products[product];
+            if (_products.ContainsKey(product))
+               return _products[product];
 
             return 0;
         }
