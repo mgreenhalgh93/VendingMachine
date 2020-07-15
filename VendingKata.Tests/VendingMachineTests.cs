@@ -80,12 +80,24 @@ namespace VendingKata.Tests
 
             //Act
             _vendingMachine.Insert(Product.Cola, 2);
+            _vendingMachine.Insert(Coin.Quarter, 4);
             _vendingMachine.Vend(Product.Cola);
 
-            var colaStock = _vendingMachine.Stock.Cola;
+            //Assert
+            Assert.Equal(1, _vendingMachine.Stock.Cola);
+        }
+
+        [Fact]
+        public void Vend_ItemsInStock_NotEnoughCoinsInserted_ReturnsCorrectStockValue_4()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Candy, 4);
+            _vendingMachine.Vend(Product.Candy);
 
             //Assert
-            Assert.Equal(1, colaStock);
+            Assert.Equal(4, _vendingMachine.Stock.Candy);
         }
     }
 }

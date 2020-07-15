@@ -20,6 +20,12 @@ namespace VendingKata.Services
                 case Product.Cola:
                     Cola += number;
                     break;
+                case Product.Candy:
+                    Candy += number;
+                    break;
+                case Product.Chips:
+                    Chips += number;
+                    break;
             }
         }
 
@@ -29,6 +35,12 @@ namespace VendingKata.Services
             {
                 case Product.Cola:
                     Cola --;
+                    break;
+                case Product.Candy:
+                    Candy--;
+                    break;
+                case Product.Chips:
+                    Chips--;
                     break;
             }
         }

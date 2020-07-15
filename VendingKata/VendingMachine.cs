@@ -58,7 +58,10 @@ namespace VendingKata
 
         public void Vend(Product product)
         {
-            Stock.Vend(product);
+            if (Slot.Total >= GetPrice(product))
+            {
+                Stock.Vend(product);
+            }
         }
     }
 }
