@@ -55,5 +55,36 @@ namespace VendingKata.Services
             service.Pennies += Pennies;
             Pennies = 0;
         }
+
+        public void Return(CoinService service, int amount)
+        {
+            while (amount >= 25 && Quarters > 0)
+            {
+                service.Quarters++;
+                Quarters--;
+                amount -= 25;
+            }
+
+            while (amount >= 10 && Dimes > 0)
+            {
+                service.Dimes++;
+                Dimes--;
+                amount -= 10;
+            }
+
+            while (amount >= 5 && Nickels > 0)
+            {
+                service.Nickels++;
+                Nickels--;
+                amount -= 5;
+            }
+
+            while (amount >= 1 && Pennies > 0)
+            {
+                service.Pennies++;
+                Pennies--;
+                amount -= 1;
+            }
+        }
     }
 }

@@ -77,6 +77,13 @@ namespace VendingKata
             {
                 Stock.Vend(product);
                 TempDisplay = "THANK YOU";
+
+                int changeDue = Slot.Total - price;
+                if (changeDue > 0)
+                {
+                    Store.Return(Return, changeDue);
+                }
+
                 Slot.Deposit(Store);
             }
             else
