@@ -185,5 +185,23 @@ namespace VendingKata.Tests
             //Assert
             Assert.Equal(2, coinStore);
         }
+
+
+        [Fact]
+        public void CoinStore_CorrectChangeIsProvided_ReturnsDime()
+        {
+            //Arrange
+            _vendingMachine.DepositToStore(Coin.Dime, 1);
+
+            //Act
+            _vendingMachine.Insert(Product.Cola, 1);
+            _vendingMachine.Insert(Coin.Dime, 1);
+            _vendingMachine.Insert(Coin.Quarter, 2);
+
+            _vendingMachine.Vend(Product.Chips);
+
+            //Assert
+            Assert.Equal(1, _vendingMachine.Return.Dimes);
+        }
     }
 }

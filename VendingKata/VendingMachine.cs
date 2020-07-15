@@ -85,6 +85,11 @@ namespace VendingKata
             }
         }
 
+        public void DepositToStore(Coin coin, int number)
+        {
+            Store.Insert(coin, number);
+        }
+
         private string TempDisplay { get; set; }
 
         private string PriceString(int amount)
