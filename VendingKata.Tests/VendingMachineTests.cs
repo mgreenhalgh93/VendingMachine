@@ -85,7 +85,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Cola);
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Products.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Stock(Product.Cola));
         }
 
         [Fact]
@@ -98,7 +98,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Candy);
 
             //Assert
-            Assert.Equal(4, _vendingMachine.Products.Candy);
+            Assert.Equal(4, _vendingMachine.Products.Stock(Product.Candy));
         }
 
         [Fact]
@@ -112,7 +112,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Cola);
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Products.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Stock(Product.Cola));
             Assert.Equal("THANK YOU", _vendingMachine.Display);
         }
 
@@ -129,7 +129,7 @@ namespace VendingKata.Tests
             string display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Products.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Stock(Product.Cola));
             Assert.Equal("PRICE $1", display);
         }
 
@@ -147,7 +147,7 @@ namespace VendingKata.Tests
             display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Products.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Stock(Product.Cola));
             Assert.Equal("$0.5", display);
         }
 
@@ -166,7 +166,7 @@ namespace VendingKata.Tests
             display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Products.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Stock(Product.Cola));
             Assert.Equal("INSERT COINS", display);
         }
 
