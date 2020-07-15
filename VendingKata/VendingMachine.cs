@@ -21,10 +21,16 @@ namespace VendingKata
         {
             get
             {
-                if (Slot.Total == 0)
-                    return "INSERT COINS";
+                string display;
+
+                if (!string.IsNullOrEmpty(TempDisplay))
+                    display = TempDisplay;
+                else if (Slot.Total == 0)
+                    display = "INSERT COINS";
                 else
-                    return $"{Slot.Total / 100.0}";
+                    display = $"{Slot.Total / 100.0}";
+
+                return display;
             }
         }
 
@@ -61,7 +67,10 @@ namespace VendingKata
             if (Slot.Total >= GetPrice(product))
             {
                 Stock.Vend(product);
+                TempDisplay = "THANK YOU";
             }
         }
+
+        private string TempDisplay { get; set; }
     }
 }
