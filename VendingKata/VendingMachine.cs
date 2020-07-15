@@ -36,7 +36,7 @@ namespace VendingKata
                 else if (Slot.Total == 0)
                     display = "INSERT COINS";
                 else
-                    display = DecimalisedSring(Slot.Total);
+                    display = PriceString(Slot.Total);
 
                 return display;
             }
@@ -72,17 +72,22 @@ namespace VendingKata
 
         public void Vend(Product product)
         {
-            if (Slot.Total >= GetPrice(product))
+            int price = GetPrice(product);
+            if (Slot.Total >= price)
             {
                 Stock.Vend(product);
                 TempDisplay = "THANK YOU";
                 Slot.Deposit(Store);
             }
+            else
+            {
+                TempDisplay = $"PRICE {PriceString(price)}";
+            }
         }
 
         private string TempDisplay { get; set; }
 
-        private string DecimalisedSring(int amount)
+        private string PriceString(int amount)
         {
             return string.Format("${0}", amount / 100.0);
         }
