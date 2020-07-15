@@ -260,7 +260,19 @@ namespace VendingKata.Tests
             display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal("Price $0.5", display);
+            Assert.Equal("$0.5", display);
+        }
+
+        [Fact]
+        public void ExactChangeOnly_CoinStoreEmpty_ReturnsDisplayMessage_ExactChangeOnly()
+        {
+            //Arrange
+
+            //Act
+            string display = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal("EXACT CHANGE ONLY", display);
         }
     }
 }
