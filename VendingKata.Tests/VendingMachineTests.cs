@@ -132,9 +132,27 @@ namespace VendingKata.Tests
             Assert.Equal("PRICE $1", display);
         }
 
-        
         [Fact]
-        public void Vend_ItemsInStock_ReturnsDisplayMessage_InsertCoins()
+        public void Vend_NotEnoughCoinsInserted_ReturnsDisplayMessage_AmountDueAfterPrice()
+        {
+            //Arrange
+
+            //Act
+            _vendingMachine.Insert(Product.Cola, 1);
+            _vendingMachine.Insert(Coin.Quarter, 2);
+            _vendingMachine.Vend(Product.Cola);
+
+            string display = _vendingMachine.Display;
+            display = _vendingMachine.Display;
+
+            //Assert
+            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal("$0.5", display);
+        }
+
+
+        [Fact]
+        public void Vend_ItemsInStock_ReturnsDisplayMessage_InsertCoinsAfterThankYou()
         {
             //Arrange
 
