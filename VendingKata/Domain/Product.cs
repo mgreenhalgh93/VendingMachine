@@ -1,5 +1,4 @@
-﻿using System;
-namespace VendingKata.Domain
+﻿namespace VendingKata.Domain
 {
     public enum Product
     {

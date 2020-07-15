@@ -1,14 +1,13 @@
-﻿using System;
-using VendingKata.Domain;
+﻿using VendingKata.Domain;
 using Xunit;
 
 namespace VendingKata.Tests
 {
-    public class ProductTests
+    public class ProductServiceTests
     {
         private readonly VendingMachine _vendingMachine;
 
-        public ProductTests()
+        public ProductServiceTests()
         {
             _vendingMachine = new VendingMachine();
         }

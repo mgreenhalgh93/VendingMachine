@@ -1,5 +1,4 @@
-﻿using System;
-using VendingKata.Domain;
+﻿using VendingKata.Domain;
 using VendingKata.Services;
 
 namespace VendingKata
