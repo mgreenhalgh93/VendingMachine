@@ -12,14 +12,14 @@ namespace VendingKata
             Return = new CoinService();
             Store = new CoinService();
 
-            Stock = new ProductService();
+            Products = new ProductService();
         }
 
         public CoinService Slot { get; set; }
         public CoinService Return { get; set; }
         public CoinService Store { get; set; }
 
-        public ProductService Stock { get; set; }
+        public ProductService Products { get; set; }
 
         public string Display
         {
@@ -67,15 +67,18 @@ namespace VendingKata
 
         public void Insert(Product product, int number)
         {
-            Stock.Insert(product, number);
+            Products.Insert(product, number);
         }
 
         public void Vend(Product product)
         {
             int price = GetPrice(product);
-            if (Slot.Total >= price)
+
+            if (Products.Stock(product) == 0)
+                TempDisplay = "SOLD OUT";
+            else if (Slot.Total >= price)
             {
-                Stock.Vend(product);
+                Products.Vend(product);
                 TempDisplay = "THANK YOU";
 
                 int changeDue = Slot.Total - price;

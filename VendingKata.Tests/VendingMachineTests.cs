@@ -84,7 +84,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Cola);
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Cola);
         }
 
         [Fact]
@@ -97,7 +97,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Candy);
 
             //Assert
-            Assert.Equal(4, _vendingMachine.Stock.Candy);
+            Assert.Equal(4, _vendingMachine.Products.Candy);
         }
 
         [Fact]
@@ -111,7 +111,7 @@ namespace VendingKata.Tests
             _vendingMachine.Vend(Product.Cola);
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Cola);
             Assert.Equal("THANK YOU", _vendingMachine.Display);
         }
 
@@ -128,7 +128,7 @@ namespace VendingKata.Tests
             string display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Cola);
             Assert.Equal("PRICE $1", display);
         }
 
@@ -146,7 +146,7 @@ namespace VendingKata.Tests
             display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Cola);
             Assert.Equal("$0.5", display);
         }
 
@@ -165,7 +165,7 @@ namespace VendingKata.Tests
             display = _vendingMachine.Display;
 
             //Assert
-            Assert.Equal(1, _vendingMachine.Stock.Cola);
+            Assert.Equal(1, _vendingMachine.Products.Cola);
             Assert.Equal("INSERT COINS", display);
         }
 
@@ -196,9 +196,10 @@ namespace VendingKata.Tests
             //Act
             _vendingMachine.Insert(Product.Cola, 1);
             _vendingMachine.Insert(Coin.Dime, 1);
-            _vendingMachine.Insert(Coin.Quarter, 2);
+            _vendingMachine.Insert(Coin.Quarter, 4);
+     
 
-            _vendingMachine.Vend(Product.Chips);
+            _vendingMachine.Vend(Product.Cola);
 
             //Assert
             Assert.Equal(1, _vendingMachine.Return.Dimes);

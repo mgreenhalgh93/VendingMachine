@@ -44,5 +44,20 @@ namespace VendingKata.Services
                     break;
             }
         }
+
+        public int Stock(Product product)
+        {
+            switch (product)
+            {
+                case Product.Cola:
+                    return Cola;
+                case Product.Candy:
+                    return Candy;
+                case Product.Chips:
+                    return Chips;
+                default:
+                    return 0;
+            }
+        }
     }
 }
