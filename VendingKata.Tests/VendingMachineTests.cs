@@ -54,6 +54,7 @@ namespace VendingKata.Tests
         public void SlotEmpty_ReturnsDisplayMessage_InsertCoins()
         {
             //Arrange
+            _vendingMachine.DepositToStore(Coin.Dime, 1);
 
             //Act
 
@@ -223,6 +224,7 @@ namespace VendingKata.Tests
         public void CoinReturn_ReturnsDisplayMessage_InsertCoinAfterCoinsReturned()
         {
             //Arrange
+            _vendingMachine.DepositToStore(Coin.Nickel, 1);
 
             //Act
             _vendingMachine.Insert(Coin.Dime, 2);

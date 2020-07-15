@@ -34,7 +34,12 @@ namespace VendingKata
                 }
 
                 else if (Slot.Total == 0)
-                    display = "INSERT COINS";
+                {
+                    if (Store.Total == 0)
+                        display = "EXACT CHANGE ONLY";
+                    else
+                        display = "INSERT COINS";
+                }
                 else
                     display = PriceString(Slot.Total);
 
